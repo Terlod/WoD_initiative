@@ -108,4 +108,5 @@ async def бросок_инициативы(ctx: discord.ApplicationContext):
         )
     await ctx.respond(response)
 
-bot.run('MTM0MDk3Nzc4OTcyMDg1ODY2NQ.GrUWei.7Bclxo8AyDZ-Wf6zZsUm2CwhK8qDCvreRWTDnQ')
+
+bot.run('API_token')
