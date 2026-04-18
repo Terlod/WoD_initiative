@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import os  # Добавляем импорт модуля os для работы с переменными окружения
 
 intents = discord.Intents.default()
 intents.messages = True
@@ -71,7 +72,6 @@ async def показать_инициативу(ctx: discord.ApplicationContext)
     for idx, char in enumerate(initiative_data[guild_id], 1):
         response += (
             f"{idx}. **{char['name']}**: {char['initiative']}\n "
-
         )
     await ctx.respond(response)
 
@@ -104,9 +104,13 @@ async def бросок_инициативы(ctx: discord.ApplicationContext):
     for char in initiative_data[guild_id]:
         response += (
             f"🎲 **{char['name']}**: {char['initiative']} \n"
-
         )
     await ctx.respond(response)
 
 
-bot.run('API_token')
+# Получаем токен из переменной окружения
+TOKEN = os.getenv("API_TOKEN")
+if TOKEN is None:
+    raise ValueError("Не задана переменная окружения API_TOKEN. Бот не может запуститься.")
+
+bot.run(TOKEN)
